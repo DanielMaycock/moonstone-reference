@@ -31,7 +31,9 @@
 	{#if meleeMove.additionalEffects}
 		<p>{meleeMove.additionalEffects}</p>
 	{/if}
-	<p><b>End Step:</b> {meleeMove.endStep}</p>
+	{#if meleeMove.endStep}
+		<p><b>End Step:</b> {meleeMove.endStep}</p>
+	{/if}
 </div>
 
 <style>

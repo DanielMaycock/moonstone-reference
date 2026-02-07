@@ -31,7 +31,7 @@ export const MeleeMoveSchema = v.object({
 	id: v.string(),
 	name: v.string(),
 	additionalEffects: v.nullable(v.string()),
-	endStep: v.string(),
+	endStep: v.nullable(v.string()),
 	upgrades: v.string(),
 	damageTypes: v.nullable(v.array(v.string())),
 	meleeOutcomes: v.array(
@@ -59,7 +59,7 @@ export const CharacterSchema = v.object({
 	baseSize: v.string(),
 	headFilename: v.string(),
 	abilities: v.array(AbilitySchema),
-	signatureMove: v.optional(MeleeMoveSchema)
+	signatureMove: v.nullable(MeleeMoveSchema)
 });
 
 export type Character = v.InferInput<typeof CharacterSchema>;
