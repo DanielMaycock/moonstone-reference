@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Ability from '$lib/components/ability.svelte';
+	import CharacterAvatar from '$lib/components/characterAvatar.svelte';
 	import MeleeMove from '$lib/components/meleeMove.svelte';
 
 	const { data } = $props();
@@ -11,10 +12,17 @@
 
 <div class="container">
 	<div class="column">
-		<section>
-			<h1>{data.character.name}</h1>
-			<p>{data.character.factions.join(', ')}</p>
-			<p>{data.character.keywords.join(', ')}</p>
+		<section class="header">
+			<div>
+				<h1>{data.character.name}</h1>
+				<p>{data.character.factions.join(', ')}</p>
+				<p>{data.character.keywords.join(', ')}</p>
+			</div>
+			<CharacterAvatar
+				src={`${data.apiBaseUrl}/images/${data.character.headFilename}`}
+				alt={data.character.name}
+				size={72}
+			/>
 		</section>
 		<section>
 			<div class="stats">
@@ -114,6 +122,12 @@
 
 	section:last-child {
 		border-bottom: none;
+	}
+
+	.header {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.stats {

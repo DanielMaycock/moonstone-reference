@@ -14,7 +14,7 @@ export const load = async ({ params }) => {
 		}
 		const character = v.parse(CharacterSchema, await response.json());
 
-		return { character };
+		return { character, apiBaseUrl: API_BASE_URL };
 	} catch (err) {
 		if (typeof err === 'object' && err !== null && 'status' in err) {
 			throw err;

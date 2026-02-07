@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import CharacterAvatar from '$lib/components/characterAvatar.svelte';
 
 	const { data } = $props();
 </script>
@@ -17,14 +18,11 @@
 					<p>{character.factions.join(', ')}</p>
 					<p>{character.keywords.join(', ')}</p>
 				</div>
-				<div class="avatar">
-					<img
-						src={`${data.apiBaseUrl}/images/${character.headFilename}`}
-						alt={character.name}
-						width="64"
-						height="64"
-					/>
-				</div>
+				<CharacterAvatar
+					src={`${data.apiBaseUrl}/images/${character.headFilename}`}
+					alt={character.name}
+					size={64}
+				/>
 			</a>
 		{/each}
 	</div>
@@ -64,20 +62,5 @@
 	p {
 		margin: 0;
 		font-weight: 300;
-	}
-
-	.avatar {
-		width: 64px;
-		height: 64px;
-		flex-shrink: 0;
-		border-radius: 4px;
-		background-color: var(--button-bg-color);
-		overflow: hidden;
-	}
-
-	.avatar img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
 	}
 </style>
