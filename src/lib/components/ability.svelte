@@ -25,9 +25,9 @@
 	{#if ability.description}
 		<p class="description">{ability.description}</p>
 	{/if}
-	{#each ability.arcaneOutcomes as outcome}
+	{#each ability.arcaneOutcomes as outcome (outcome.id)}
 		<div class="outcome-row">
-			{#each outcome.outcomeCards as card}
+			{#each outcome.outcomeCards as card, i (i)}
 				{#if card.isCatastrophe}
 					<span class="cardValue Catastrophe">Catastrophe</span>
 				{:else}

@@ -19,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each meleeMove.meleeOutcomes as outcome}
+			{#each meleeMove.meleeOutcomes as outcome (outcome.opposingMove)}
 				<tr>
 					<td style="text-align: start;">{outcome.opposingMove}</td>
 					<td>{outcome.damage ?? '∅'}</td>
