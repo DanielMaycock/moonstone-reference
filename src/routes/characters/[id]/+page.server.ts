@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { API_BASE_URL } from '$env/static/private';
 import * as v from 'valibot';
+import { API_BASE_URL } from '$env/static/private';
 import { CharacterSchema } from '$lib/types/character';
 
 export const load = async ({ params }) => {
@@ -10,7 +10,7 @@ export const load = async ({ params }) => {
 			if (response.status === 404) {
 				throw error(404, 'Character not found');
 			}
-			throw new Error('Failed to fetch character with status ' + response.status);
+			throw new Error(`Failed to fetch character with status ${response.status}`);
 		}
 		const character = v.parse(CharacterSchema, await response.json());
 

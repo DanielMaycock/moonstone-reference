@@ -2,7 +2,7 @@
 	import Ability from '$lib/components/ability.svelte';
 	import MeleeMove from '$lib/components/meleeMove.svelte';
 
-	let { data } = $props();
+	const { data } = $props();
 
 	const passives = $derived(data.character.abilities.filter((a) => a.type === 'Passive'));
 	const actives = $derived(data.character.abilities.filter((a) => a.type === 'Active'));

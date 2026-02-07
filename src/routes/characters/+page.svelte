@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	let { data } = $props();
+
+	const { data } = $props();
 </script>
 
 <h1>Characters</h1>
