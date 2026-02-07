@@ -1,10 +1,41 @@
 <script lang="ts">
 	import '../app.css';
+	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import favicon from '$lib/assets/favicon.svg';
 
 	const { children } = $props();
+
+	let theme = $state<'light' | 'dark'>('light');
+
+	function toggleTheme() {
+		theme = theme === 'light' ? 'dark' : 'light';
+		document.documentElement.dataset.theme = theme;
+		localStorage.setItem('theme', theme);
+	}
+
+	onMount(() => {
+		const saved = localStorage.getItem('theme');
+		const mql = window.matchMedia('(prefers-color-scheme: dark)');
+
+		if (saved === 'light' || saved === 'dark') {
+			theme = saved;
+		} else {
+			theme = mql.matches ? 'dark' : 'light';
+		}
+		document.documentElement.dataset.theme = theme;
+
+		function handleChange(e: MediaQueryListEvent) {
+			if (!localStorage.getItem('theme')) {
+				theme = e.matches ? 'dark' : 'light';
+				document.documentElement.dataset.theme = theme;
+			}
+		}
+
+		mql.addEventListener('change', handleChange);
+		return () => mql.removeEventListener('change', handleChange);
+	});
 </script>
 
 <svelte:head>
@@ -20,6 +51,19 @@
 <nav>
 	<a href={resolve('/')} aria-current={page.url.pathname === '/'}>Home</a>
 	<a href={resolve('/characters')} aria-current={page.url.pathname === '/characters'}>Characters</a>
+	<div class="theme-switch">
+		<img src="/images/Commonwealth.webp" alt="Light mode" />
+		<button
+			class:dark={theme === 'dark'}
+			onclick={toggleTheme}
+			aria-label="Toggle theme"
+			role="switch"
+			aria-checked={theme === 'dark'}
+		>
+			<span class="thumb"></span>
+		</button>
+		<img src="/images/Dominion.webp" alt="Dark mode" />
+	</div>
 </nav>
 
 <div>
@@ -32,6 +76,7 @@
 		top: 0;
 		background-color: var(--bg-color);
 		width: 100%;
+		box-sizing: border-box;
 		height: 60px;
 		display: flex;
 		align-items: center;
@@ -63,6 +108,50 @@
 	nav a[aria-current='true'] {
 		font-weight: bold;
 		text-decoration: underline;
+	}
+
+	.theme-switch {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.theme-switch img {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+	}
+
+	.theme-switch button {
+		background: var(--button-bg-color);
+		border: 2px solid var(--text-color);
+		border-radius: 14px;
+		cursor: pointer;
+		padding: 2px;
+		position: relative;
+		width: 48px;
+		height: 28px;
+		box-sizing: border-box;
+	}
+
+	.theme-switch button:hover {
+		background: var(--button-hover-color);
+	}
+
+	.theme-switch .thumb {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: var(--bg-color);
+		top: 2px;
+		left: 2px;
+		transition: left 0.2s ease;
+	}
+
+	.theme-switch button.dark .thumb {
+		left: calc(100% - 22px);
 	}
 
 	@media (min-width: 768px) {

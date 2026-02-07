@@ -17,6 +17,34 @@
 	}
 }
 
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--bg-color: #1a1a2e;
+		--text-color: #e0dcc8;
+		--green-card-color: #5a8a44;
+		--blue-card-color: #3a7ab8;
+		--pink-card-color: #b848b8;
+		--catastrophe-card-color: #5a5a5a;
+
+		--avatar-bg-color: #3a3040;
+		--button-bg-color: #4a3f55;
+		--button-hover-color: #5a4f65;
+	}
+}
+
+:root[data-theme="dark"] {
+	--bg-color: #1a1a2e;
+	--text-color: #e0dcc8;
+	--green-card-color: #5a8a44;
+	--blue-card-color: #3a7ab8;
+	--pink-card-color: #b848b8;
+	--catastrophe-card-color: #5a5a5a;
+
+	--avatar-bg-color: #3a3040;
+	--button-bg-color: #4a3f55;
+	--button-hover-color: #5a4f65;
+}
+
 html {
 	background-color: var(--bg-color);
 	font-family:
