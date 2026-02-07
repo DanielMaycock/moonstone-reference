@@ -5,6 +5,10 @@
 	const { data } = $props();
 </script>
 
+<svelte:head>
+	<title>Characters - Moonstone Reference</title>
+</svelte:head>
+
 <h1>Characters</h1>
 
 {#if data.characters.length === 0}

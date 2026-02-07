@@ -21,7 +21,7 @@
 		<tbody>
 			{#each meleeMove.meleeOutcomes as outcome (outcome.opposingMove)}
 				<tr>
-					<td style="text-align: start;">{outcome.opposingMove}</td>
+					<td class="move-name">{outcome.opposingMove}</td>
 					<td>{outcome.damage ?? '∅'}</td>
 					<td>{outcome.isCounter ? 'Yes' : 'No'}</td>
 				</tr>
@@ -65,5 +65,9 @@
 	td {
 		font-weight: 300;
 		font-size: 16px;
+	}
+
+	.move-name {
+		text-align: start;
 	}
 </style>

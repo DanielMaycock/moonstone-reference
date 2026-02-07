@@ -1,2 +1,7 @@
-<h1>Moonstone Reference App</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<svelte:head>
+	<title>Moonstone Reference</title>
+</svelte:head>
+
+<h1>Moonstone Reference</h1>
+<p>A quick-reference app for the Moonstone tabletop game.</p>
+<p>Browse the <a href="/characters">characters</a> to view stats, abilities, and signature moves.</p>

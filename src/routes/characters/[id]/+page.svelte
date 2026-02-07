@@ -10,6 +10,10 @@
 	const arcane = $derived(data.character.abilities.filter((a) => a.type === 'Arcane'));
 </script>
 
+<svelte:head>
+	<title>{data.character.name} - Moonstone Reference</title>
+</svelte:head>
+
 <div class="container">
 	<div class="column">
 		<section class="header">
@@ -47,7 +51,7 @@
 		<section>
 			<h2>Health</h2>
 			<div>
-				{#each { length: data.character.health } as _, i}
+				{#each { length: data.character.health } as _, i (i)}
 					<div class={['health-pip', data.character.energy.includes(i) ? 'energy' : '']}></div>
 				{/each}
 			</div>
