@@ -8,9 +8,9 @@
 </svelte:head>
 
 <div class="error">
-	<h1>{page.status === 404 ? 'Page not found' : 'Something went wrong'}</h1>
+	<h1>{page.status === 404 ? 'Character not found' : 'Something went wrong'}</h1>
 	<p>{page.error?.message}</p>
-	<a href={resolve('/')}>Back to home</a>
+	<a href={resolve('/characters')}>Back to characters</a>
 </div>
 
 <style>
