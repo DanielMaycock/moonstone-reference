@@ -35,6 +35,7 @@
 	}
 
 	function handleSelectChange(e: Event) {
+		clearTimeout(debounceTimer);
 		const target = e.currentTarget as HTMLSelectElement;
 		updateFilters({ ...currentParams(), [target.name]: target.value });
 	}
