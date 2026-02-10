@@ -6,6 +6,10 @@ on:
     pull_request:
         branches: [main]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/moonstone-reference
+
 jobs:
     lint:
         runs-on: ubuntu-latest
@@ -36,17 +40,23 @@ jobs:
 
             - uses: docker/login-action@v3
               with:
-                  registry: ghcr.io
+                  registry: ${{ env.REGISTRY }}
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
-
+           
+            - uses: docker/metadata-action@v5
+              id: meta
+              with:
+                images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+                tags: |
+                  type=sha,prefix=
+                  type=raw,value=latest
+                  
             - uses: docker/build-push-action@v6
               with:
-                  context: .
-                  push: true
-                  tags: |
-                      ghcr.io/${{ github.repository }}:latest
-                      ghcr.io/${{ github.repository }}:${{ github.sha }}
+                context: .
+                push: true
+                tags: ${{ steps.meta.outputs.tags }}
 
     deploy:
         runs-on: ubuntu-latest
