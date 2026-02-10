@@ -2,8 +2,9 @@ import { error } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { env } from '$env/dynamic/private';
 import { CharacterSchema } from '$lib/types/character';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ params }) => {
+export const load = (async ({ params }) => {
 	const API_BASE_URL = env.API_BASE_URL;
 	if (!API_BASE_URL) {
 		throw new Error('API_BASE_URL environment variable is not set');
@@ -27,4 +28,4 @@ export const load = async ({ params }) => {
 		console.error('Error fetching character:', err);
 		throw error(500, 'Failed to fetch character');
 	}
-};
+}) satisfies PageServerLoad;

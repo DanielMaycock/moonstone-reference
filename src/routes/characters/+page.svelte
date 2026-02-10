@@ -6,9 +6,12 @@
 
 	const { data } = $props();
 
-	// biome-ignore lint/style/useConst: $state requires let for reassignment in Svelte templates
-	let searchValue = $state(data.filters.search);
+	let searchValue = $state('');
 	let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+
+	$effect(() => {
+		searchValue = data.filters.search;
+	});
 
 	function updateFilters(params: Record<string, string>) {
 		const searchParams = new URLSearchParams();

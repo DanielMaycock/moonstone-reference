@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { env } from '$env/dynamic/private';
 import { CharacterSchema } from '$lib/types/character';
+import type { PageServerLoad } from './$types';
 
 const CharacterListSchema = v.array(
 	v.pick(CharacterSchema, ['id', 'name', 'factions', 'keywords', 'headFilename'])
@@ -10,7 +11,7 @@ const CharacterListSchema = v.array(
 const FactionsSchema = v.array(v.object({ name: v.string() }));
 const KeywordsSchema = v.array(v.object({ keyword: v.string() }));
 
-export const load = async ({ url }) => {
+export const load = (async ({ url }) => {
 	const API_BASE_URL = env.API_BASE_URL;
 	if (!API_BASE_URL) {
 		throw new Error('API_BASE_URL environment variable is not set');
@@ -61,4 +62,4 @@ export const load = async ({ url }) => {
 		console.error('Error fetching characters:', err);
 		throw error(500, 'Failed to fetch characters');
 	}
-};
+}) satisfies PageServerLoad;

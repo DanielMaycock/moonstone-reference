@@ -85,7 +85,11 @@ function jsonResponse(data: unknown, status = 200) {
 }
 
 function loadEvent(id: string) {
-	return { params: { id } } as unknown as ServerLoadEvent;
+	return { params: { id } } as unknown as ServerLoadEvent<
+		{ id: string },
+		object,
+		'/characters/[id]'
+	>;
 }
 
 describe('character detail load', () => {

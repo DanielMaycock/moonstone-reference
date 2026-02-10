@@ -52,7 +52,11 @@ function makeUrl(params: Record<string, string> = {}) {
 }
 
 function loadEvent(params: Record<string, string> = {}) {
-	return { url: makeUrl(params) } as unknown as ServerLoadEvent;
+	return { url: makeUrl(params) } as unknown as ServerLoadEvent<
+		Record<string, string>,
+		object,
+		'/characters'
+	>;
 }
 
 describe('characters list load', () => {
