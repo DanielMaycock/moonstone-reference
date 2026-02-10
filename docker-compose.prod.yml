@@ -5,7 +5,7 @@ services:
     environment:
       - API_BASE_URL=http://moonstoneapi.dans-apps.co.uk
     networks:
-      - traefik
+      - traefik-public
     labels:
       - traefik.enable=true
       - traefik.http.routers.moonstone.rule=Host(`moonstone.dans-apps.co.uk`)
@@ -14,5 +14,5 @@ services:
       - traefik.http.services.moonstone.loadbalancer.server.port=3000
 
 networks:
-  traefik:
+  traefik-public:
     external: true
