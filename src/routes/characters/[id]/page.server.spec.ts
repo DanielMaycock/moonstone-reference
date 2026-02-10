@@ -2,8 +2,8 @@ import type { ServerLoadEvent } from '@sveltejs/kit';
 import { isHttpError } from '@sveltejs/kit';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('$env/static/private', () => ({
-	API_BASE_URL: 'https://test-api.example.com'
+vi.mock('$env/dynamic/private', () => ({
+	env: { API_BASE_URL: 'https://test-api.example.com' }
 }));
 
 const banshee = {

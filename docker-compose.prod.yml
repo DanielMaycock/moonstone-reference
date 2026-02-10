@@ -1,0 +1,18 @@
+services:
+  app:
+    image: ghcr.io/danielmaycock/moonstone-reference:latest
+    restart: unless-stopped
+    environment:
+      - API_BASE_URL=http://moonstoneapi.dans-apps.co.uk
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.moonstone.rule=Host(`moonstone.dans-apps.co.uk`)
+      - traefik.http.routers.moonstone.entrypoints=websecure
+      - traefik.http.routers.moonstone.tls.certresolver=letsencrypt
+      - traefik.http.services.moonstone.loadbalancer.server.port=3000
+
+networks:
+  traefik:
+    external: true
