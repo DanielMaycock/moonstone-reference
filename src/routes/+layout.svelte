@@ -48,9 +48,11 @@
 	/>
 </svelte:head>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
+
 <nav>
-	<a href={resolve('/')} aria-current={page.url.pathname === '/'}>Home</a>
-	<a href={resolve('/characters')} aria-current={page.url.pathname === '/characters'}>Characters</a>
+	<a href={resolve('/')} aria-current={page.url.pathname === '/' ? 'page' : undefined}>Home</a>
+	<a href={resolve('/characters')} aria-current={page.url.pathname === '/characters' ? 'page' : undefined}>Characters</a>
 	<div class="theme-switch">
 		<img src="/images/Commonwealth.webp" alt="Light mode" />
 		<button
@@ -66,11 +68,28 @@
 	</div>
 </nav>
 
-<div class="content">
+<div class="content" id="main-content">
 	{@render children()}
 </div>
 
 <style>
+	.skip-link {
+		position: absolute;
+		left: -9999px;
+		z-index: 20;
+		padding: var(--space-sm) var(--space-md);
+		background-color: var(--bg-color);
+		color: var(--text-color);
+		border: 2px solid var(--text-color);
+		border-radius: 4px;
+		text-decoration: none;
+	}
+
+	.skip-link:focus {
+		left: var(--space-sm);
+		top: var(--space-sm);
+	}
+
 	nav {
 		position: sticky;
 		top: 0;
@@ -81,7 +100,7 @@
 		height: 60px;
 		display: flex;
 		align-items: center;
-		font-size: 16px;
+		font-size: 1rem;
 		border-bottom: var(--text-color) 2px solid;
 		padding: 0px 20px;
 	}
@@ -106,7 +125,7 @@
 		color: var(--text-color);
 	}
 
-	nav a[aria-current='true'] {
+	nav a[aria-current='page'] {
 		font-weight: bold;
 		text-decoration: underline;
 	}

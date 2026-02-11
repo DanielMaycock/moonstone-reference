@@ -50,7 +50,7 @@
 		</section>
 		<section>
 			<h2>Health</h2>
-			<div>
+			<div role="img" aria-label={`Health: ${data.character.health}, Energy: ${data.character.energy.length}`}>
 				{#each { length: data.character.health } as _, i (i)}
 					<div class={['health-pip', data.character.energy.includes(i) ? 'energy' : '', (i + 1) % 5 === 0 && i < data.character.health - 1 ? 'group-end' : '']}></div>
 				{/each}
@@ -162,7 +162,7 @@
 	}
 
 	.stat-block > p {
-		font-size: 20px;
+		font-size: 1.25rem;
 		font-weight: 300;
 		margin: 0;
 	}
@@ -181,5 +181,6 @@
 
 	.health-pip.energy {
 		background-color: var(--blue-card-color);
+		box-shadow: inset 0 0 0 4px var(--blue-card-color), inset 0 0 0 6px var(--bg-color);
 	}
 </style>

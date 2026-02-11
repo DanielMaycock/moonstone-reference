@@ -35,10 +35,10 @@
 		{/if}
 	</div>
 	{#if ability.oncePerTurn}
-		<p><i>Once per turn</i></p>
+		<p><em>Once per turn</em></p>
 	{/if}
 	{#if ability.oncePerGame}
-		<p><i>Once per game</i></p>
+		<p><em>Once per game</em></p>
 	{/if}
 	{#if ability.description}
 		<p class="description">{ability.description}</p>
@@ -76,11 +76,11 @@
 	}
 
 	.meta {
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	.description {
-		text-align: justify;
+		text-align: left;
 	}
 
 	.outcome-row {

@@ -13,9 +13,9 @@
 	<table>
 		<thead>
 			<tr>
-				<th></th>
-				<th>Damage dealt</th>
-				<th>Follow up?</th>
+				<th scope="col"><span class="visually-hidden">Opposing move</span></th>
+				<th scope="col">Damage dealt</th>
+				<th scope="col">Follow up?</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,12 +60,12 @@
 
 	th {
 		font-weight: 500;
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	td {
 		font-weight: 300;
-		font-size: 16px;
+		font-size: 1rem;
 	}
 
 	.move-name {

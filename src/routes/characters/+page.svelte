@@ -56,6 +56,7 @@
 	<input
 		type="text"
 		name="search"
+		aria-label="Search characters by name"
 		placeholder="Search by name..."
 		value={searchValue}
 		oninput={(e) => {
@@ -63,13 +64,13 @@
 			handleSearchInput();
 		}}
 	/>
-	<select name="faction" value={data.filters.faction} onchange={handleSelectChange}>
+	<select name="faction" aria-label="Filter by faction" value={data.filters.faction} onchange={handleSelectChange}>
 		<option value="">All Factions</option>
 		{#each data.factions as faction}
 			<option value={faction}>{faction}</option>
 		{/each}
 	</select>
-	<select name="keyword" value={data.filters.keyword} onchange={handleSelectChange}>
+	<select name="keyword" aria-label="Filter by keyword" value={data.filters.keyword} onchange={handleSelectChange}>
 		<option value="">All Keywords</option>
 		{#each data.keywords as keyword}
 			<option value={keyword}>{keyword}</option>
@@ -163,7 +164,7 @@
 	}
 
 	h3 {
-		font-size: 18px;
+		font-size: 1.125rem;
 		font-weight: 600;
 		margin: 0;
 	}

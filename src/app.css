@@ -16,9 +16,9 @@
 	--space-md: 16px;
 	--space-lg: 24px;
 
-	--base-font-size: 16px;
+	--base-font-size: 1rem;
 	@media (min-width: 768px) {
-		--base-font-size: 18px;
+		--base-font-size: 1.125rem;
 	}
 }
 
@@ -66,32 +66,32 @@ body {
 
 h1 {
 	font-weight: 700;
-	font-size: 32px;
+	font-size: 2rem;
 	margin: 0;
 }
 
 h2 {
 	font-weight: 400;
-	font-size: 24px;
+	font-size: 1.5rem;
 	margin: 0;
 }
 
 h3 {
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 1.125rem;
 	margin: 0;
 }
 
 h4 {
 	font-weight: 500;
 	margin: 0;
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 h5 {
 	font-weight: 500;
 	margin: 0;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 p {
@@ -106,9 +106,25 @@ button {
 	cursor: pointer;
 	border-radius: 4px;
 	padding: var(--space-sm) var(--space-md);
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 button:hover {
 	background-color: var(--button-hover-color);
+}
+
+:focus-visible {
+	outline: 2px solid var(--text-color);
+	outline-offset: 2px;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }
