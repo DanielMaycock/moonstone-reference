@@ -66,7 +66,7 @@
 	</div>
 </nav>
 
-<div>
+<div class="content">
 	{@render children()}
 </div>
 
@@ -74,6 +74,7 @@
 	nav {
 		position: sticky;
 		top: 0;
+		z-index: 10;
 		background-color: var(--bg-color);
 		width: 100%;
 		box-sizing: border-box;
@@ -114,7 +115,7 @@
 		margin-left: auto;
 		display: flex;
 		align-items: center;
-		gap: 8px;
+		gap: var(--space-sm);
 	}
 
 	.theme-switch img {
@@ -154,9 +155,13 @@
 		left: calc(100% - 22px);
 	}
 
+	.content {
+		padding: var(--space-md) 20px;
+	}
+
 	@media (min-width: 768px) {
-		div {
-			padding: 10px 80px;
+		.content {
+			padding: var(--space-md) 80px;
 		}
 	}
 </style>

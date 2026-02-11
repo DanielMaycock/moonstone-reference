@@ -103,8 +103,8 @@
 	.filters {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
-		margin-bottom: 16px;
+		gap: var(--space-sm);
+		margin-bottom: var(--space-md);
 	}
 
 	@media (min-width: 768px) {
@@ -115,7 +115,7 @@
 
 	.filters input,
 	.filters select {
-		padding: 8px 12px;
+		padding: var(--space-sm) 12px;
 		border: 2px solid var(--text-color);
 		background-color: var(--button-bg-color);
 		color: var(--text-color);
@@ -133,7 +133,7 @@
 	}
 
 	.container {
-		gap: 10px;
+		gap: var(--space-sm);
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	}
@@ -145,15 +145,21 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-		gap: 10px;
-		padding: 10px;
+		gap: var(--space-sm);
+		padding: var(--space-md);
 		border: 2px solid var(--text-color);
+		border-radius: 4px;
+		transition: background-color 0.15s ease;
+	}
+
+	a:hover {
+		background-color: var(--button-bg-color);
 	}
 
 	.info {
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
+		gap: var(--space-xs);
 	}
 
 	h3 {

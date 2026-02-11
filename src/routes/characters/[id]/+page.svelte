@@ -17,7 +17,7 @@
 <div class="container">
 	<div class="column">
 		<section class="header">
-			<div>
+			<div class="header-info">
 				<h1>{data.character.name}</h1>
 				<p>{data.character.factions.join(', ')}</p>
 				<p>{data.character.keywords.join(', ')}</p>
@@ -52,7 +52,7 @@
 			<h2>Health</h2>
 			<div>
 				{#each { length: data.character.health } as _, i (i)}
-					<div class={['health-pip', data.character.energy.includes(i) ? 'energy' : '']}></div>
+					<div class={['health-pip', data.character.energy.includes(i) ? 'energy' : '', (i + 1) % 5 === 0 && i < data.character.health - 1 ? 'group-end' : '']}></div>
 				{/each}
 			</div>
 		</section>
@@ -107,25 +107,31 @@
 	.column {
 		display: flex;
 		flex-direction: column;
-		padding: 0px 2px;
+		padding: 0 var(--space-xs);
 	}
 
 	@media (min-width: 768px) {
 		.column {
-			padding: 0px 8px;
+			padding: 0 var(--space-sm);
 		}
 	}
 
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
-		padding: 12px 0px;
+		gap: var(--space-sm);
+		padding: var(--space-lg) 0;
 		border-bottom: 1px solid var(--text-color);
 	}
 
 	section:last-child {
 		border-bottom: none;
+	}
+
+	@media (max-width: 767px) {
+		.column:first-child section:last-child {
+			border-bottom: 1px solid var(--text-color);
+		}
 	}
 
 	.header {
@@ -134,10 +140,16 @@
 		align-items: center;
 	}
 
+	.header-info {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+	}
+
 	.stats {
 		display: flex;
 		flex-direction: row;
-		gap: 12px;
+		gap: var(--space-md);
 		justify-content: center;
 	}
 
@@ -145,7 +157,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 8px;
+		padding: var(--space-sm);
 		flex: 1;
 	}
 
@@ -161,8 +173,12 @@
 		border: 2px solid var(--text-color);
 		border-radius: 50%;
 		display: inline-block;
-		margin-right: 4px;
+		margin-right: var(--space-xs);
 	}
+	.health-pip.group-end {
+		margin-right: var(--space-md);
+	}
+
 	.health-pip.energy {
 		background-color: var(--blue-card-color);
 	}

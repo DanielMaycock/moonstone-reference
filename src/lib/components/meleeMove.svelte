@@ -40,20 +40,21 @@
 	div {
 		display: flex;
 		flex-direction: column;
+		gap: var(--space-sm);
 	}
 
 	table {
 		border-collapse: collapse;
-		margin-top: 8px;
-		margin-bottom: 16px;
+		margin-top: var(--space-sm);
+		margin-bottom: var(--space-md);
 	}
 
 	th,
 	td {
 		padding-left: 0px;
-		padding-bottom: 4px;
-		padding-right: 12px;
-		padding-top: 4px;
+		padding-bottom: var(--space-xs);
+		padding-right: var(--space-md);
+		padding-top: var(--space-xs);
 		text-align: center;
 	}
 
