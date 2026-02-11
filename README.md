@@ -1,38 +1,54 @@
-# sv
+# Moonstone Reference
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A quick-reference web app for the [Moonstone](https://moonstonethegame.com/) tabletop game. Browse characters, view stats, abilities and signature moves.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** SvelteKit 2 / Svelte 5
+- **Language:** TypeScript (strict mode)
+- **Validation:** Valibot
+- **Tooling:** Biome, svelte-check
+- **Testing:** Vitest with Playwright browser provider
+- **Package manager:** Bun
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Getting Started
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Prerequisites
 
-## Developing
+- [Bun](https://bun.sh/) installed
+- An API endpoint serving character data
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
+### Install dependencies
 
 ```sh
-npm run build
+bun install
 ```
 
-You can preview the production build with `npm run preview`.
+### Environment variables
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+| Variable | Description |
+|---|---|
+| `API_BASE_URL` | Base URL of the external character data API |
+
+### Run the dev server
+
+```sh
+bun run dev
+```
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `bun run dev` | Start dev server |
+| `bun run build` | Production build |
+| `bun run check` | Type checking via svelte-check |
+| `bun run lint` | Lint and format check via Biome |
+| `bun run lint:fix` | Auto-fix lint and format issues |
+| `bun run format` | Format code via Biome |
+| `bun run test` | Run all tests once |
+| `bun run test:unit` | Run Vitest in watch mode |
+
+## Deployment
+
+Docker support is included. See `Dockerfile`, `docker-compose.yml` and `docker-compose.prod.yml` for container configuration.
