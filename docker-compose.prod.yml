@@ -3,7 +3,7 @@ services:
     image: ghcr.io/danielmaycock/moonstone-reference:latest
     restart: unless-stopped
     environment:
-      - API_BASE_URL=http://moonstoneapi.dans-apps.co.uk
+      - API_BASE_URL=https://moonstoneapi.dans-apps.co.uk
     networks:
       - traefik-public
     labels:
