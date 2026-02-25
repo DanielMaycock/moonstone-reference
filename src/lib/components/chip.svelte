@@ -17,14 +17,14 @@
 	}
 
 	.ability {
-		color: var(--pink-card-color);
+		color: var(--chip-ability-color);
 	}
 
 	.keyword {
-		color: var(--green-card-color);
+		color: var(--chip-keyword-color);
 	}
 
 	.damageType {
-		color: var(--blue-card-color);
+		color: var(--chip-damage-color);
 	}
 </style>
