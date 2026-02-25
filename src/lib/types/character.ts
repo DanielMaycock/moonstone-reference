@@ -6,7 +6,8 @@ export const RichTextNodeSchema = v.union([
 	v.object({ type: v.literal('keyword'), name: v.string(), value: v.optional(v.string()) }),
 	v.object({ type: v.literal('damageType'), name: v.string() }),
 	v.object({ type: v.literal('arcaneCard'), color: v.string(), value: v.string() }),
-	v.object({ type: v.literal('catastrophe') })
+	v.object({ type: v.literal('catastrophe') }),
+	v.object({ type: v.literal('character'), id: v.string(), name: v.string() })
 ]);
 
 export type RichTextNode = v.InferInput<typeof RichTextNodeSchema>;

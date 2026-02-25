@@ -187,6 +187,15 @@ describe('RichTextNodeSchema', () => {
 		expect(result).toEqual({ type: 'catastrophe' });
 	});
 
+	it('parses a character node', () => {
+		const result = v.parse(RichTextNodeSchema, {
+			type: 'character',
+			id: 'abc-123',
+			name: 'Young Jack'
+		});
+		expect(result).toEqual({ type: 'character', id: 'abc-123', name: 'Young Jack' });
+	});
+
 	it('rejects an unknown type', () => {
 		expect(() => v.parse(RichTextNodeSchema, { type: 'unknown', value: 'x' })).toThrow();
 	});

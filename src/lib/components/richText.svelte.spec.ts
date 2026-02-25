@@ -59,6 +59,14 @@ describe('richText.svelte', () => {
 		expect(span?.textContent).toBe('Catastrophe');
 	});
 
+	it('renders a character node as a chip', async () => {
+		const nodes: RichTextNode[] = [{ type: 'character', id: 'abc-123', name: 'Young Jack' }];
+		const { container } = render(RichText, { nodes });
+		const chip = container.querySelector('.chip');
+		expect(chip).not.toBeNull();
+		expect(chip?.textContent).toBe('Young Jack');
+	});
+
 	it('renders multiple mixed nodes in order', async () => {
 		const nodes: RichTextNode[] = [
 			{ type: 'text', value: 'Deals ' },
