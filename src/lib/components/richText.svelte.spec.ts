@@ -51,6 +51,14 @@ describe('richText.svelte', () => {
 		expect(card?.textContent).toBe('2');
 	});
 
+	it('renders a catastrophe node as a styled span', async () => {
+		const nodes: RichTextNode[] = [{ type: 'catastrophe' }];
+		const { container } = render(RichText, { nodes });
+		const span = container.querySelector('.catastrophe');
+		expect(span).not.toBeNull();
+		expect(span?.textContent).toBe('Catastrophe');
+	});
+
 	it('renders multiple mixed nodes in order', async () => {
 		const nodes: RichTextNode[] = [
 			{ type: 'text', value: 'Deals ' },

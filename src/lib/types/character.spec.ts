@@ -182,6 +182,11 @@ describe('RichTextNodeSchema', () => {
 		expect(result).toEqual({ type: 'arcaneCard', color: 'Green', value: '2' });
 	});
 
+	it('parses a catastrophe node', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'catastrophe' });
+		expect(result).toEqual({ type: 'catastrophe' });
+	});
+
 	it('rejects an unknown type', () => {
 		expect(() => v.parse(RichTextNodeSchema, { type: 'unknown', value: 'x' })).toThrow();
 	});

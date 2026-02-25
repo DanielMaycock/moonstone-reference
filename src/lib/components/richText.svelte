@@ -16,6 +16,8 @@
 		<Chip label={node.name} variant="damageType" />
 	{:else if node.type === 'arcaneCard'}
 		<span class="arcaneCard {node.color}">{node.value}</span>
+	{:else if node.type === 'catastrophe'}
+		<span class="catastrophe">Catastrophe</span>
 	{/if}
 {/each}
 
@@ -38,5 +40,14 @@
 
 	.arcaneCard.Blue {
 		background-color: var(--blue-card-color);
+	}
+
+	.catastrophe {
+		font-weight: 400;
+		border-width: 1px;
+		border-style: solid;
+		border-color: var(--text-color);
+		padding: var(--space-xs);
+		background-color: var(--catastrophe-card-color);
 	}
 </style>
