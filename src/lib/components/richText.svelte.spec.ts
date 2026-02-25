@@ -43,6 +43,14 @@ describe('richText.svelte', () => {
 		expect(chip?.textContent).toBe('Slicing');
 	});
 
+	it('renders an arcaneCard node as a styled span', async () => {
+		const nodes: RichTextNode[] = [{ type: 'arcaneCard', color: 'Green', value: '2' }];
+		const { container } = render(RichText, { nodes });
+		const card = container.querySelector('.arcaneCard.Green');
+		expect(card).not.toBeNull();
+		expect(card?.textContent).toBe('2');
+	});
+
 	it('renders multiple mixed nodes in order', async () => {
 		const nodes: RichTextNode[] = [
 			{ type: 'text', value: 'Deals ' },

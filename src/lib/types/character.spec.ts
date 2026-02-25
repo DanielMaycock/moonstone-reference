@@ -177,6 +177,11 @@ describe('RichTextNodeSchema', () => {
 		expect(result).toEqual({ type: 'damageType', name: 'Slicing' });
 	});
 
+	it('parses an arcaneCard node', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'arcaneCard', color: 'Green', value: '2' });
+		expect(result).toEqual({ type: 'arcaneCard', color: 'Green', value: '2' });
+	});
+
 	it('rejects an unknown type', () => {
 		expect(() => v.parse(RichTextNodeSchema, { type: 'unknown', value: 'x' })).toThrow();
 	});
