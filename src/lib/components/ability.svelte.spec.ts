@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-svelte';
-import type { Ability } from '$lib/types/character';
+import type { Ability, RichTextNode } from '$lib/types/character';
 import AbilityComponent from './ability.svelte';
+
+const t = (value: string): RichTextNode[] => [{ type: 'text', value }];
 
 // Real Moonstone data: Banshee's abilities
 
@@ -19,13 +21,14 @@ const ghastlyScream: Ability = {
 	arcaneOutcomes: [
 		{
 			id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
-			outcomeText:
-				"Move target enemy X\" directly away. If the enemy is in possession of at least 1 Moonstone it loses possession of one Moonstone it is carrying before moving. Place it in base contact with the enemy at depth '1'.",
+			outcomeText: t(
+				"Move target enemy X\" directly away. If the enemy is in possession of at least 1 Moonstone it loses possession of one Moonstone it is carrying before moving. Place it in base contact with the enemy at depth '1'."
+			),
 			outcomeCards: [{ color: 'Pink', value: 'X', isCatastrophe: false }]
 		},
 		{
 			id: 'fe99bdc9-aa2f-470a-81fc-d312fb7f0663',
-			outcomeText: 'This character suffers 2 wounds.',
+			outcomeText: t('This character suffers 2 wounds.'),
 			outcomeCards: [{ color: null, value: null, isCatastrophe: true }]
 		}
 	]
@@ -34,8 +37,9 @@ const ghastlyScream: Ability = {
 const exsanguinatingClaws: Ability = {
 	id: 'e2836c92-af85-425c-867d-e6d27678749c',
 	name: 'Exsanguinating Claws',
-	description:
-		'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.',
+	description: t(
+		'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.'
+	),
 	energyCost: null,
 	oncePerGame: false,
 	oncePerTurn: false,
@@ -49,7 +53,7 @@ const exsanguinatingClaws: Ability = {
 const foulGases: Ability = {
 	id: 'b3f80756-2ff3-4894-865e-576ea1e3ff70',
 	name: 'Foul Gases',
-	description: 'All models within the pulse suffer 2 Magical Dmg.',
+	description: t('All models within the pulse suffer 2 Magical Dmg.'),
 	energyCost: 2,
 	oncePerGame: false,
 	oncePerTurn: false,

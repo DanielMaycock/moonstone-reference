@@ -1,6 +1,8 @@
 import * as v from 'valibot';
 import { describe, expect, it } from 'vitest';
-import { AbilitySchema, CharacterSchema, MeleeMoveSchema } from './character';
+import { AbilitySchema, CharacterSchema, MeleeMoveSchema, RichTextNodeSchema } from './character';
+
+const t = (value: string) => [{ type: 'text' as const, value }];
 
 // Real data from the Moonstone API
 
@@ -17,13 +19,14 @@ const ghastlyScream = {
 	arcaneOutcomes: [
 		{
 			id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
-			outcomeText:
-				"Move target enemy X\" directly away. If the enemy is in possession of at least 1 Moonstone it loses possession of one Moonstone it is carrying before moving. Place it in base contact with the enemy at depth '1'.",
+			outcomeText: t(
+				"Move target enemy X\" directly away. If the enemy is in possession of at least 1 Moonstone it loses possession of one Moonstone it is carrying before moving. Place it in base contact with the enemy at depth '1'."
+			),
 			outcomeCards: [{ color: 'Pink', value: 'X', isCatastrophe: false }]
 		},
 		{
 			id: 'fe99bdc9-aa2f-470a-81fc-d312fb7f0663',
-			outcomeText: 'This character suffers 2 wounds.',
+			outcomeText: t('This character suffers 2 wounds.'),
 			outcomeCards: [{ color: null, value: null, isCatastrophe: true }]
 		}
 	]
@@ -32,8 +35,9 @@ const ghastlyScream = {
 const exsanguinatingClaws = {
 	id: 'e2836c92-af85-425c-867d-e6d27678749c',
 	name: 'Exsanguinating Claws',
-	description:
-		'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.',
+	description: t(
+		'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.'
+	),
 	energyCost: null,
 	oncePerGame: false,
 	oncePerTurn: false,
@@ -46,8 +50,9 @@ const exsanguinatingClaws = {
 const chaaarge = {
 	id: '29283a14-28a5-41be-a784-1b120e2a0deb',
 	name: 'Chaaarge!!',
-	description:
-		'Move this model 4" directly towards target enemy model. If this character\u2019s next action this turn is a Melee Attack against the same target it deals +2 Dmg.',
+	description: t(
+		'Move this model 4" directly towards target enemy model. If this character\u2019s next action this turn is a Melee Attack against the same target it deals +2 Dmg.'
+	),
 	energyCost: 2,
 	oncePerGame: false,
 	oncePerTurn: false,
@@ -60,7 +65,7 @@ const chaaarge = {
 const foulGases = {
 	id: 'b3f80756-2ff3-4894-865e-576ea1e3ff70',
 	name: 'Foul Gases',
-	description: 'All models within the pulse suffer 2 Magical Dmg.',
+	description: t('All models within the pulse suffer 2 Magical Dmg.'),
 	energyCost: 2,
 	oncePerGame: false,
 	oncePerTurn: false,
@@ -73,9 +78,10 @@ const foulGases = {
 const lacerate = {
 	id: '51916402-3cbc-45ad-86aa-700c3b0d7e86',
 	name: 'Lacerate',
-	additionalEffects: 'Reduce Dmg suffered by -2 if the enemy has at least one Bleed.',
-	endStep:
-		'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].',
+	additionalEffects: t('Reduce Dmg suffered by -2 if the enemy has at least one Bleed.'),
+	endStep: t(
+		'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].'
+	),
 	upgrades: 'Rising attack',
 	damageTypes: ['Magical', 'Slicing'],
 	meleeOutcomes: [
@@ -91,8 +97,9 @@ const lacerate = {
 const ankleBiter = {
 	id: '492a69a0-715b-4838-8c3d-f7e851c33ea5',
 	name: 'Ankle Biter',
-	additionalEffects:
-		'This attack deals \u2205 damage against models which are further than 1" away.',
+	additionalEffects: t(
+		'This attack deals \u2205 damage against models which are further than 1" away.'
+	),
 	endStep: null,
 	upgrades: 'Rising attack',
 	damageTypes: ['Impact'],
@@ -139,6 +146,49 @@ const doug = {
 	signatureMove: ankleBiter,
 	abilities: [chaaarge, foulGases]
 };
+
+describe('RichTextNodeSchema', () => {
+	it('parses a text node', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'text', value: 'hello' });
+		expect(result).toEqual({ type: 'text', value: 'hello' });
+	});
+
+	it('parses an ability node', () => {
+		const result = v.parse(RichTextNodeSchema, {
+			type: 'ability',
+			id: 'abc-123',
+			name: 'Ghastly Scream'
+		});
+		expect(result).toEqual({ type: 'ability', id: 'abc-123', name: 'Ghastly Scream' });
+	});
+
+	it('parses a keyword node with a value', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'keyword', name: 'Bleed', value: '1' });
+		expect(result).toEqual({ type: 'keyword', name: 'Bleed', value: '1' });
+	});
+
+	it('parses a keyword node without a value', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'keyword', name: 'Faerie' });
+		expect(result).toEqual({ type: 'keyword', name: 'Faerie' });
+	});
+
+	it('parses a damageType node', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'damageType', name: 'Slicing' });
+		expect(result).toEqual({ type: 'damageType', name: 'Slicing' });
+	});
+
+	it('rejects an unknown type', () => {
+		expect(() => v.parse(RichTextNodeSchema, { type: 'unknown', value: 'x' })).toThrow();
+	});
+
+	it('rejects a text node missing value', () => {
+		expect(() => v.parse(RichTextNodeSchema, { type: 'text' })).toThrow();
+	});
+
+	it('rejects an ability node missing name', () => {
+		expect(() => v.parse(RichTextNodeSchema, { type: 'ability', id: 'abc-123' })).toThrow();
+	});
+});
 
 describe('AbilitySchema', () => {
 	it('parses a Passive ability with null energyCost and range', () => {

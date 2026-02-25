@@ -11,7 +11,7 @@ export const load = (async ({ params }) => {
 	}
 
 	try {
-		const response = await fetch(`${API_BASE_URL}/characters/${params.id}`);
+		const response = await fetch(`${API_BASE_URL}/characters/${params.id}?format=rich`);
 		if (!response.ok) {
 			if (response.status === 404) {
 				throw error(404, 'Character not found');

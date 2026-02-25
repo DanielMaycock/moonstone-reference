@@ -1,4 +1,5 @@
 <script lang="ts">
+	import RichText from '$lib/components/richText.svelte';
 	import type { Ability } from '$lib/types/character';
 
 	const { ability }: { ability: Ability } = $props();
@@ -41,7 +42,7 @@
 		<p><em>Once per game</em></p>
 	{/if}
 	{#if ability.description}
-		<p class="description">{ability.description}</p>
+		<p class="description"><RichText nodes={ability.description} /></p>
 	{/if}
 	{#each sortedOutcomes as outcome (outcome.id)}
 		<div class="outcome-row">
@@ -52,7 +53,7 @@
 					<span class="cardValue {card.color}">{card.value}</span>
 				{/if}
 			{/each}
-			<p class="description">{outcome.outcomeText}</p>
+			<p class="description"><RichText nodes={outcome.outcomeText} /></p>
 		</div>
 	{/each}
 </div>

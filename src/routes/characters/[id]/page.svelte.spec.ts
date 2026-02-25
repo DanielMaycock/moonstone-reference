@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-svelte';
-import type { Character } from '$lib/types/character';
+import type { Character, RichTextNode } from '$lib/types/character';
 import Page from './+page.svelte';
+
+const t = (value: string): RichTextNode[] => [{ type: 'text', value }];
 
 const banshee: Character = {
 	id: '28562575-5965-4ffc-a249-276b4ce0bddd',
@@ -20,9 +22,10 @@ const banshee: Character = {
 	signatureMove: {
 		id: '51916402-3cbc-45ad-86aa-700c3b0d7e86',
 		name: 'Lacerate',
-		additionalEffects: 'Reduce Dmg suffered by -2 if the enemy has at least one Bleed.',
-		endStep:
-			'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].',
+		additionalEffects: t('Reduce Dmg suffered by -2 if the enemy has at least one Bleed.'),
+		endStep: t(
+			'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].'
+		),
 		upgrades: 'Rising attack',
 		damageTypes: ['Magical', 'Slicing'],
 		meleeOutcomes: [
@@ -38,8 +41,9 @@ const banshee: Character = {
 		{
 			id: 'e2836c92-af85-425c-867d-e6d27678749c',
 			name: 'Exsanguinating Claws',
-			description:
-				'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.',
+			description: t(
+				'If this character deals Slicing or Piercing Melee Dmg, increase the Dmg dealt by +1.'
+			),
 			energyCost: null,
 			oncePerGame: false,
 			oncePerTurn: false,
@@ -51,8 +55,9 @@ const banshee: Character = {
 		{
 			id: '8b627890-a50a-40cf-95de-2ef14553f3f8',
 			name: 'Weeping Miasma',
-			description:
-				'Whilst this model is in play, friendly Faeries treat enemies with at least one Bleed as gaining +1 to their Evade Stat.',
+			description: t(
+				'Whilst this model is in play, friendly Faeries treat enemies with at least one Bleed as gaining +1 to their Evade Stat.'
+			),
 			energyCost: null,
 			oncePerGame: false,
 			oncePerTurn: false,
@@ -74,7 +79,7 @@ const banshee: Character = {
 			arcaneOutcomes: [
 				{
 					id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
-					outcomeText: 'Move target enemy X" directly away.',
+					outcomeText: t('Move target enemy X" directly away.'),
 					outcomeCards: [{ color: 'Pink', value: 'X', isCatastrophe: false }]
 				}
 			]
@@ -92,7 +97,7 @@ const banshee: Character = {
 			arcaneOutcomes: [
 				{
 					id: 'b42634f9-f980-45a6-80de-d85069ccf223',
-					outcomeText: 'This character suffers 2 wounds.',
+					outcomeText: t('This character suffers 2 wounds.'),
 					outcomeCards: [{ color: null, value: null, isCatastrophe: true }]
 				}
 			]
@@ -100,8 +105,9 @@ const banshee: Character = {
 		{
 			id: '02330b23-1456-487a-8638-a0f151becdc1',
 			name: 'Weakling',
-			description:
-				'Reduce all Melee Dmg this character deals by -1. Harvest actions cost this model +1 energy.',
+			description: t(
+				'Reduce all Melee Dmg this character deals by -1. Harvest actions cost this model +1 energy.'
+			),
 			energyCost: null,
 			oncePerGame: false,
 			oncePerTurn: false,
@@ -131,8 +137,9 @@ const doug: Character = {
 		{
 			id: '29283a14-28a5-41be-a784-1b120e2a0deb',
 			name: 'Chaaarge!!',
-			description:
-				'Move this model 4" directly towards target enemy model. If this character\u2019s next action this turn is a Melee Attack against the same target it deals +2 Dmg.',
+			description: t(
+				'Move this model 4" directly towards target enemy model. If this character\u2019s next action this turn is a Melee Attack against the same target it deals +2 Dmg.'
+			),
 			energyCost: 2,
 			oncePerGame: false,
 			oncePerTurn: false,
@@ -144,7 +151,7 @@ const doug: Character = {
 		{
 			id: 'b3f80756-2ff3-4894-865e-576ea1e3ff70',
 			name: 'Foul Gases',
-			description: 'All models within the pulse suffer 2 Magical Dmg.',
+			description: t('All models within the pulse suffer 2 Magical Dmg.'),
 			energyCost: 2,
 			oncePerGame: false,
 			oncePerTurn: false,
@@ -156,8 +163,9 @@ const doug: Character = {
 		{
 			id: '2387f16c-67d6-447d-b6ee-83b88ababd95',
 			name: 'Lance',
-			description:
-				'If this character deals Slicing Melee Dmg, reduce the Dmg dealt to \u2205. If this character deals Piercing Dmg, increase the Dmg dealt by +1.',
+			description: t(
+				'If this character deals Slicing Melee Dmg, reduce the Dmg dealt to \u2205. If this character deals Piercing Dmg, increase the Dmg dealt by +1.'
+			),
 			energyCost: null,
 			oncePerGame: false,
 			oncePerTurn: false,

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Chip from '$lib/components/chip.svelte';
+	import RichText from '$lib/components/richText.svelte';
 	import type { MeleeMove } from '$lib/types/character';
 
 	const { meleeMove }: { meleeMove: MeleeMove } = $props();
@@ -8,7 +10,12 @@
 	<h4>{meleeMove.name}</h4>
 	<p>Upgrade for {meleeMove.upgrades}</p>
 	{#if meleeMove.damageTypes}
-		<p><b>Damage types:</b> {meleeMove.damageTypes.join(', ')}</p>
+		<p class="damage-types">
+			<b>Damage types:</b>
+			{#each meleeMove.damageTypes as dt}
+				<Chip label={dt} variant="damageType" />
+			{/each}
+		</p>
 	{/if}
 	<table>
 		<thead>
@@ -29,10 +36,10 @@
 		</tbody>
 	</table>
 	{#if meleeMove.additionalEffects}
-		<p>{meleeMove.additionalEffects}</p>
+		<p><RichText nodes={meleeMove.additionalEffects} /></p>
 	{/if}
 	{#if meleeMove.endStep}
-		<p><b>End Step:</b> {meleeMove.endStep}</p>
+		<p><b>End Step:</b> <RichText nodes={meleeMove.endStep} /></p>
 	{/if}
 </div>
 

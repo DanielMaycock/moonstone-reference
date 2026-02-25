@@ -1,16 +1,19 @@
 import { describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-svelte';
-import type { MeleeMove } from '$lib/types/character';
+import type { MeleeMove, RichTextNode } from '$lib/types/character';
 import MeleeMoveComponent from './meleeMove.svelte';
+
+const t = (value: string): RichTextNode[] => [{ type: 'text', value }];
 
 // Banshee's Lacerate: all fields populated
 const lacerate: MeleeMove = {
 	id: '51916402-3cbc-45ad-86aa-700c3b0d7e86',
 	name: 'Lacerate',
-	additionalEffects: 'Reduce Dmg suffered by -2 if the enemy has at least one Bleed.',
-	endStep:
-		'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].',
+	additionalEffects: t('Reduce Dmg suffered by -2 if the enemy has at least one Bleed.'),
+	endStep: t(
+		'If the enemy suffered 1 or more wounds during this round of melee, the enemy model gains [Bleed: During the Discard Step, this character suffers 1 wound then loses this ability].'
+	),
 	upgrades: 'Rising attack',
 	damageTypes: ['Magical', 'Slicing'],
 	meleeOutcomes: [
@@ -27,8 +30,9 @@ const lacerate: MeleeMove = {
 const ankleBiter: MeleeMove = {
 	id: '492a69a0-715b-4838-8c3d-f7e851c33ea5',
 	name: 'Ankle Biter',
-	additionalEffects:
-		'This attack deals \u2205 damage against models which are further than 1" away.',
+	additionalEffects: t(
+		'This attack deals \u2205 damage against models which are further than 1" away.'
+	),
 	endStep: null,
 	upgrades: 'Rising attack',
 	damageTypes: ['Impact'],
@@ -69,7 +73,8 @@ describe('meleeMove.svelte', () => {
 
 	it('shows damage types when present', async () => {
 		render(MeleeMoveComponent, { meleeMove: lacerate });
-		await expect.element(page.getByText('Magical, Slicing')).toBeInTheDocument();
+		await expect.element(page.getByText('Magical')).toBeInTheDocument();
+		await expect.element(page.getByText('Slicing')).toBeInTheDocument();
 	});
 
 	it('shows single damage type', async () => {

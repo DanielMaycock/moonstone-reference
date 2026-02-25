@@ -1,5 +1,14 @@
 import * as v from 'valibot';
 
+export const RichTextNodeSchema = v.union([
+	v.object({ type: v.literal('text'), value: v.string() }),
+	v.object({ type: v.literal('ability'), id: v.string(), name: v.string() }),
+	v.object({ type: v.literal('keyword'), name: v.string(), value: v.optional(v.string()) }),
+	v.object({ type: v.literal('damageType'), name: v.string() })
+]);
+
+export type RichTextNode = v.InferInput<typeof RichTextNodeSchema>;
+
 export const AbilitySchema = v.object({
 	id: v.string(),
 	name: v.string(),
@@ -9,7 +18,7 @@ export const AbilitySchema = v.object({
 	oncePerGame: v.boolean(),
 	range: v.nullable(v.number()),
 	pulse: v.boolean(),
-	description: v.nullable(v.string()),
+	description: v.nullable(v.array(RichTextNodeSchema)),
 	arcaneOutcomes: v.array(
 		v.object({
 			id: v.string(),
@@ -20,7 +29,7 @@ export const AbilitySchema = v.object({
 					isCatastrophe: v.boolean()
 				})
 			),
-			outcomeText: v.string()
+			outcomeText: v.array(RichTextNodeSchema)
 		})
 	)
 });
@@ -30,8 +39,8 @@ export type Ability = v.InferInput<typeof AbilitySchema>;
 export const MeleeMoveSchema = v.object({
 	id: v.string(),
 	name: v.string(),
-	additionalEffects: v.nullable(v.string()),
-	endStep: v.nullable(v.string()),
+	additionalEffects: v.nullable(v.array(RichTextNodeSchema)),
+	endStep: v.nullable(v.array(RichTextNodeSchema)),
 	upgrades: v.string(),
 	damageTypes: v.nullable(v.array(v.string())),
 	meleeOutcomes: v.array(
