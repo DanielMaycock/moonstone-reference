@@ -15,9 +15,11 @@
 	{:else if node.type === 'damageType'}
 		<Chip label={node.name} variant="damageType" />
 	{:else if node.type === 'arcaneCard'}
-		<span class="arcaneCard {node.color}">{node.value}</span>
-	{:else if node.type === 'catastrophe'}
-		<span class="catastrophe">Catastrophe</span>
+		{#if node.catastrophe}
+			<span class="catastrophe">Catastrophe</span>
+		{:else}
+			<span class="arcaneCard {node.color}">{node.value}</span>
+		{/if}
 	{:else if node.type === 'character'}
 		<Chip label={node.name} variant="keyword" />
 	{/if}

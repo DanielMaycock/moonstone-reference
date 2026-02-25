@@ -51,8 +51,8 @@ describe('richText.svelte', () => {
 		expect(card?.textContent).toBe('2');
 	});
 
-	it('renders a catastrophe node as a styled span', async () => {
-		const nodes: RichTextNode[] = [{ type: 'catastrophe' }];
+	it('renders an arcaneCard catastrophe node as a styled span', async () => {
+		const nodes: RichTextNode[] = [{ type: 'arcaneCard', catastrophe: true }];
 		const { container } = render(RichText, { nodes });
 		const span = container.querySelector('.catastrophe');
 		expect(span).not.toBeNull();

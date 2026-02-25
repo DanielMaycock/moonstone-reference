@@ -177,14 +177,14 @@ describe('RichTextNodeSchema', () => {
 		expect(result).toEqual({ type: 'damageType', name: 'Slicing' });
 	});
 
-	it('parses an arcaneCard node', () => {
+	it('parses an arcaneCard node with color and value', () => {
 		const result = v.parse(RichTextNodeSchema, { type: 'arcaneCard', color: 'Green', value: '2' });
 		expect(result).toEqual({ type: 'arcaneCard', color: 'Green', value: '2' });
 	});
 
-	it('parses a catastrophe node', () => {
-		const result = v.parse(RichTextNodeSchema, { type: 'catastrophe' });
-		expect(result).toEqual({ type: 'catastrophe' });
+	it('parses an arcaneCard node with catastrophe flag', () => {
+		const result = v.parse(RichTextNodeSchema, { type: 'arcaneCard', catastrophe: true });
+		expect(result).toEqual({ type: 'arcaneCard', catastrophe: true });
 	});
 
 	it('parses a character node', () => {
