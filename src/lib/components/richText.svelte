@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AbilityChip from '$lib/components/abilityChip.svelte';
 	import Chip from '$lib/components/chip.svelte';
 	import type { RichTextNode } from '$lib/types/character';
 
@@ -9,7 +10,7 @@
 	{#if node.type === 'text'}
 		{node.value}
 	{:else if node.type === 'ability'}
-		<Chip label={node.name} variant="ability" />
+		<AbilityChip id={node.id} name={node.name} />
 	{:else if node.type === 'keyword'}
 		<Chip label={node.value ?? node.name} variant="keyword" />
 	{:else if node.type === 'damageType'}

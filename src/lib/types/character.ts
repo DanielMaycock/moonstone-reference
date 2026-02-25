@@ -21,10 +21,10 @@ export const AbilitySchema = v.object({
 	name: v.string(),
 	type: v.union([v.literal('Active'), v.literal('Passive'), v.literal('Arcane')]),
 	energyCost: v.nullable(v.number()),
-	oncePerTurn: v.boolean(),
-	oncePerGame: v.boolean(),
+	oncePerTurn: v.nullable(v.boolean()),
+	oncePerGame: v.nullable(v.boolean()),
 	range: v.nullable(v.number()),
-	pulse: v.boolean(),
+	pulse: v.nullable(v.boolean()),
 	description: v.nullable(v.array(RichTextNodeSchema)),
 	arcaneOutcomes: v.array(
 		v.object({

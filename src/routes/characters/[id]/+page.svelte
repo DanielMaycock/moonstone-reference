@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { setContext } from 'svelte';
 	import Ability from '$lib/components/ability.svelte';
 	import CharacterAvatar from '$lib/components/characterAvatar.svelte';
 	import MeleeMove from '$lib/components/meleeMove.svelte';
 
 	const { data } = $props();
+
+	setContext('characterId', data.character.id);
 
 	const passives = $derived(data.character.abilities.filter((a) => a.type === 'Passive'));
 	const actives = $derived(data.character.abilities.filter((a) => a.type === 'Active'));

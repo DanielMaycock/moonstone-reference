@@ -11,10 +11,12 @@ describe('richText.svelte', () => {
 		await expect.element(page.getByText('hello world')).toBeInTheDocument();
 	});
 
-	it('renders an ability node as a chip', async () => {
+	it('renders an ability node as a linked chip', () => {
 		const nodes: RichTextNode[] = [{ type: 'ability', id: 'abc-123', name: 'Ghastly Scream' }];
 		const { container } = render(RichText, { nodes });
-		const chip = container.querySelector('.chip.ability');
+		const link = container.querySelector('a[href="/abilities/abc-123"]');
+		expect(link).not.toBeNull();
+		const chip = link?.querySelector('.chip.ability');
 		expect(chip).not.toBeNull();
 		expect(chip?.textContent).toBe('Ghastly Scream');
 	});
