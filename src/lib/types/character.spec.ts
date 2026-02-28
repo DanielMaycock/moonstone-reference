@@ -16,6 +16,7 @@ const ghastlyScream = {
 	pulse: false,
 	range: 6,
 	type: 'Arcane' as const,
+	reloadsAbility: null,
 	arcaneOutcomes: [
 		{
 			id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
@@ -44,6 +45,7 @@ const exsanguinatingClaws = {
 	pulse: false,
 	range: null,
 	type: 'Passive' as const,
+	reloadsAbility: null,
 	arcaneOutcomes: []
 };
 
@@ -59,6 +61,7 @@ const chaaarge = {
 	pulse: false,
 	range: null,
 	type: 'Active' as const,
+	reloadsAbility: null,
 	arcaneOutcomes: []
 };
 
@@ -72,6 +75,7 @@ const foulGases = {
 	pulse: true,
 	range: 2,
 	type: 'Active' as const,
+	reloadsAbility: null,
 	arcaneOutcomes: []
 };
 

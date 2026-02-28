@@ -10,6 +10,7 @@
 
 	let ability = $state<Ability | null>(null)
 	let loading = $state(false)
+	// biome-ignore lint/style/useConst: bind:this requires let
 	let tooltipEl = $state<HTMLSpanElement | null>(null)
 
 	async function loadAbility() {

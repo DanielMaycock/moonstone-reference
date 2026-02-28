@@ -52,6 +52,7 @@ const banshee = {
 			pulse: false,
 			range: null,
 			type: 'Passive',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		},
 		{
@@ -64,6 +65,7 @@ const banshee = {
 			pulse: false,
 			range: 6,
 			type: 'Arcane',
+			reloadsAbility: null,
 			arcaneOutcomes: [
 				{
 					id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
