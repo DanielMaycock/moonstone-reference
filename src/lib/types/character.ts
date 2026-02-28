@@ -26,6 +26,7 @@ export const AbilitySchema = v.object({
 	range: v.nullable(v.number()),
 	pulse: v.nullable(v.boolean()),
 	description: v.nullable(v.array(RichTextNodeSchema)),
+	reloadsAbility: v.nullable(v.object({ id: v.string(), name: v.string() })),
 	arcaneOutcomes: v.array(
 		v.object({
 			id: v.string(),

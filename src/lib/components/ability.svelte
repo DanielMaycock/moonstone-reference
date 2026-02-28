@@ -25,7 +25,7 @@
 
 <div class="ability">
 	<div class="header">
-		<h4>{ability.name}</h4>
+		<h4>{ability.name}{#if ability.reloadsAbility}&nbsp;[{ability.reloadsAbility.name}]{/if}</h4>
 		{#if ability.range}
 			<p class="meta">
 				{ability.range}" {ability.pulse ? 'Pulse' : 'Range'}
