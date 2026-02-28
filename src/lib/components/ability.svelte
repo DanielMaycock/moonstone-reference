@@ -45,16 +45,15 @@
 		<p class="description"><RichText nodes={ability.description} /></p>
 	{/if}
 	{#each sortedOutcomes as outcome (outcome.id)}
-		<div class="outcome-row">
-			{#each outcome.outcomeCards as card, i (i)}
-				{#if card.isCatastrophe}
+		<p class="description">
+			{#each outcome.outcomeCards as card, i (i)}{#if i > 0 && i === outcome.outcomeCards.length - 1}<span> or </span>{:else if i > 0}<span>, </span>{/if}{#if card.isCatastrophe}
 					<span class="cardValue Catastrophe">Catastrophe</span>
 				{:else}
 					<span class="cardValue {card.color}">{card.value}</span>
 				{/if}
-			{/each}
-			<p class="description"><RichText nodes={outcome.outcomeText} /></p>
-		</div>
+			{/each}<span class="colon"> :</span>
+			<RichText nodes={outcome.outcomeText} />
+		</p>
 	{/each}
 </div>
 
@@ -84,10 +83,12 @@
 		text-align: left;
 	}
 
-	.outcome-row {
-		display: flex;
-		align-items: center;
-		gap: var(--space-sm);
+	p.description + p.description {
+		margin-top: var(--space-xs);
+	}
+
+	.colon {
+		font-size: 1em;
 	}
 
 	.cardValue {
@@ -96,6 +97,8 @@
 		border-width: 1px;
 		padding: var(--space-xs);
 		border-style: solid;
+		margin-inline: var(--space-xs);
+		vertical-align: middle;
 	}
 
 	.cardValue.Pink {
