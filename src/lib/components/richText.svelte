@@ -27,12 +27,16 @@
 {/each}
 
 <style>
-	.arcaneCard {
-		font-weight: 400;
-		border-width: 1px;
-		border-style: solid;
-		border-color: var(--text-color);
-		padding: var(--space-xs);
+	.arcaneCard,
+	.catastrophe {
+		font-size: 0.875em;
+		font-weight: 500;
+		border: 1px solid var(--text-color);
+		border-radius: 3px;
+		padding: 0.2em 0.25em 0.1em;
+		margin-inline: 0.2em;
+		vertical-align: middle;
+		line-height: 1;
 	}
 
 	.arcaneCard.Pink {
@@ -48,11 +52,6 @@
 	}
 
 	.catastrophe {
-		font-weight: 400;
-		border-width: 1px;
-		border-style: solid;
-		border-color: var(--text-color);
-		padding: var(--space-xs);
 		background-color: var(--catastrophe-card-color);
 	}
 </style>

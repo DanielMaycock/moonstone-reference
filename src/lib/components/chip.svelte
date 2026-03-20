@@ -10,10 +10,12 @@
 		display: inline;
 		font-size: 0.875em;
 		font-weight: 500;
-		padding: 0.1em 0.35em;
+		padding: 0.2em 0.35em 0.1em;
 		border-radius: 3px;
 		border: 1px solid currentColor;
 		white-space: nowrap;
+		line-height: 1;
+		vertical-align: middle;
 	}
 
 	.ability {

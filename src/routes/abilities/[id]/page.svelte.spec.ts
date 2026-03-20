@@ -14,6 +14,7 @@ const ability: Ability = {
 	range: 6,
 	pulse: false,
 	description: null,
+	reloadsAbility: null,
 	arcaneOutcomes: []
 };
 

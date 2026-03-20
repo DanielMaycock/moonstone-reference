@@ -97,9 +97,10 @@
 		font-weight: 500;
 		border: 1px solid var(--text-color);
 		border-radius: 3px;
-		padding: 0.15em 0.25em;
+		padding: 0.2em 0.25em 0.1em;
 		margin-inline: 0.2em;
 		vertical-align: middle;
+		line-height: 1;
 	}
 
 	.cardValue.Pink {

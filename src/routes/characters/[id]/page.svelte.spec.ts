@@ -50,6 +50,7 @@ const banshee: Character = {
 			pulse: false,
 			range: null,
 			type: 'Passive',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		},
 		{
@@ -64,6 +65,7 @@ const banshee: Character = {
 			pulse: false,
 			range: null,
 			type: 'Passive',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		},
 		{
@@ -76,6 +78,7 @@ const banshee: Character = {
 			pulse: false,
 			range: 6,
 			type: 'Arcane',
+			reloadsAbility: null,
 			arcaneOutcomes: [
 				{
 					id: '3e39eb87-9386-4ed6-aca9-967005d17f63',
@@ -94,6 +97,7 @@ const banshee: Character = {
 			pulse: false,
 			range: 6,
 			type: 'Arcane',
+			reloadsAbility: null,
 			arcaneOutcomes: [
 				{
 					id: 'b42634f9-f980-45a6-80de-d85069ccf223',
@@ -114,6 +118,7 @@ const banshee: Character = {
 			pulse: false,
 			range: null,
 			type: 'Passive',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		}
 	]
@@ -146,6 +151,7 @@ const doug: Character = {
 			pulse: false,
 			range: null,
 			type: 'Active',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		},
 		{
@@ -158,6 +164,7 @@ const doug: Character = {
 			pulse: true,
 			range: 2,
 			type: 'Active',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		},
 		{
@@ -172,6 +179,7 @@ const doug: Character = {
 			pulse: false,
 			range: null,
 			type: 'Passive',
+			reloadsAbility: null,
 			arcaneOutcomes: []
 		}
 	]

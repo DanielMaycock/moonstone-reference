@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, tick } from 'svelte'
-	import Chip from '$lib/components/chip.svelte'
 	import AbilityPanel from '$lib/components/ability.svelte'
+	import Chip from '$lib/components/chip.svelte'
 	import type { Ability } from '$lib/types/character'
 
 	const { id, name }: { id: string; name: string } = $props()
