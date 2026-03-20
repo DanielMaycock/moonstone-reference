@@ -93,28 +93,25 @@
 
 	.cardValue {
 		text-wrap: nowrap;
-		font-weight: 400;
-		border-width: 1px;
-		padding: var(--space-xs);
-		border-style: solid;
-		margin-inline: var(--space-xs);
+		font-size: 0.875em;
+		font-weight: 500;
+		border: 1px solid var(--text-color);
+		border-radius: 3px;
+		padding: 0.15em 0.25em;
+		margin-inline: 0.2em;
 		vertical-align: middle;
 	}
 
 	.cardValue.Pink {
-		border-color: var(--text-color);
 		background-color: var(--pink-card-color);
 	}
 	.cardValue.Green {
-		border-color: var(--text-color);
 		background-color: var(--green-card-color);
 	}
 	.cardValue.Blue {
-		border-color: var(--text-color);
 		background-color: var(--blue-card-color);
 	}
 	.cardValue.Catastrophe {
-		border-color: var(--text-color);
 		background-color: var(--catastrophe-card-color);
 	}
 </style>
