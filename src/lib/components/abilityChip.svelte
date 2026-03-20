@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, tick } from 'svelte'
 	import Chip from '$lib/components/chip.svelte'
-	import RichText from '$lib/components/richText.svelte'
+	import AbilityPanel from '$lib/components/ability.svelte'
 	import type { Ability } from '$lib/types/character'
 
 	const { id, name }: { id: string; name: string } = $props()
@@ -52,15 +52,7 @@
 	</a>
 	{#if ability}
 		<span class="tooltip" role="tooltip" bind:this={tooltipEl}>
-			{#if ability.energyCost !== null}
-				<span class="tooltip-meta">{ability.energyCost} Energy</span>
-			{/if}
-			{#if ability.range !== null}
-				<span class="tooltip-meta">{ability.range}" {ability.pulse ? 'Pulse' : 'Range'}</span>
-			{/if}
-			{#if ability.description}
-				<span class="tooltip-description"><RichText nodes={ability.description} /></span>
-			{/if}
+			<AbilityPanel {ability} />
 		</span>
 	{/if}
 </span>
@@ -77,7 +69,6 @@
 	}
 
 	.tooltip {
-		display: flex;
 		visibility: hidden;
 		position: absolute;
 		bottom: calc(100% + var(--space-xs));
@@ -88,26 +79,15 @@
 		color: var(--text-color);
 		border: 1px solid var(--text-color);
 		border-radius: 3px;
-		padding: var(--space-xs) var(--space-sm);
+		padding: var(--space-sm) var(--space-md);
 		width: max-content;
-		max-width: 30rem;
-		font-size: 0.75rem;
-		flex-direction: column;
-		gap: var(--space-xs);
+		max-width: 36rem;
+		font-size: 0.85rem;
 		pointer-events: none;
 	}
 
 	.chip-wrapper:hover .tooltip,
 	.chip-wrapper:focus-within .tooltip {
 		visibility: visible;
-	}
-
-	.tooltip-meta {
-		font-weight: 300;
-		white-space: nowrap;
-	}
-
-	.tooltip-description {
-		font-weight: 300;
 	}
 </style>
