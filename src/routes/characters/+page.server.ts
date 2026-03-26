@@ -47,7 +47,8 @@ export const load = (async ({ url }) => {
 			throw new Error(`Failed to fetch keywords with status ${keywordsResponse.status}`);
 		}
 
-		const characters = v.parse(CharacterListSchema, await charactersResponse.json());
+		const characters = v.parse(CharacterListSchema, await charactersResponse.json())
+		characters.sort((a, b) => a.name.localeCompare(b.name))
 		const factions = v.parse(FactionsSchema, await factionsResponse.json());
 		const keywords = v.parse(KeywordsSchema, await keywordsResponse.json());
 
