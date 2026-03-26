@@ -67,6 +67,7 @@ html {
 	font-family:
 		Josefin Sans,
 		"Noto Sans",
+		"Noto Sans Symbols 2",
 		sans-serif;
 	color: var(--text-color);
 	font-size: var(--base-font-size);
