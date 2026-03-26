@@ -37,6 +37,8 @@ Biome's Svelte support is experimental. `noUnusedVariables` and `noUnusedImports
 
 ## Git commit guidelines
 
+Always run `bun run lint` before committing and fix any issues before proceeding.
+
 All commits should start with a summary, this should be prefix with one of the below depending on the changes in the commit
 - feat - the commit is a new feature
 - fix - the commit fixes a bug or issue
