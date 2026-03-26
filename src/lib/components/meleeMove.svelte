@@ -29,7 +29,7 @@
 			{#each meleeMove.meleeOutcomes as outcome (outcome.opposingMove)}
 				<tr>
 					<td class="move-name">{outcome.opposingMove}</td>
-					<td>{outcome.damage ?? '∅'}</td>
+					<td>{#if outcome.damage != null}{outcome.damage}{:else}<span class="null-symbol">∅</span>{/if}</td>
 					<td>{outcome.isCounter ? 'Yes' : 'No'}</td>
 				</tr>
 			{/each}
@@ -77,5 +77,9 @@
 
 	.move-name {
 		text-align: start;
+	}
+
+	.null-symbol {
+		font-family: 'Noto Sans Symbols 2', sans-serif;
 	}
 </style>
