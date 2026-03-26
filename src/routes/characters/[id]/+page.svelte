@@ -47,7 +47,7 @@
 				</div>
 				<div class="stat-block">
 					<h3>Evade</h3>
-					<p>{data.character.evade}</p>
+					<p>{new Intl.NumberFormat('en', { signDisplay: 'exceptZero' }).format(data.character.evade)}</p>
 				</div>
 			</div>
 		</section>

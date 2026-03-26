@@ -1,5 +1,5 @@
 :root {
-	--bg-color: #c5c0a0;
+	--bg-color: #e8e4d0;
 	--text-color: #002147;
 	--green-card-color: #9ac484;
 	--blue-card-color: #67baf6;
@@ -7,13 +7,13 @@
 	--catastrophe-card-color: #9a9a9a;
 
 	--chip-ability-color: #7a0080;
-	--chip-keyword-color: #0a4400;
-	--chip-damage-color: #003d80;
+	--chip-keyword-color: #1a6600;
+	--chip-damage-color: #0044cc;
 
-	--avatar-bg-color: #6b5f57;
-	--button-bg-color: #917f75;
+	--avatar-bg-color: #8c7d75;
+	--button-bg-color: #b5a898;
 	--button-text-color: var(--text-color);
-	--button-hover-color: #77625f;
+	--button-hover-color: #c4b8b0;
 
 	--space-xs: 4px;
 	--space-sm: 8px;
