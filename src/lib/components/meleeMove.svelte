@@ -29,7 +29,16 @@
 			{#each meleeMove.meleeOutcomes as outcome (outcome.opposingMove)}
 				<tr>
 					<td class="move-name">{outcome.opposingMove}</td>
-					<td>{#if outcome.damage != null}{outcome.damage}{:else}<span class="null-symbol">∅</span>{/if}</td>
+					<td>
+					{#if outcome.damage != null}
+						{outcome.damage}
+					{:else}
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" aria-label="None" role="img" style="vertical-align: middle;">
+							<circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="0.75"/>
+							<line x1="3.5" y1="12.5" x2="12.5" y2="3.5" stroke="currentColor" stroke-width="0.75"/>
+						</svg>
+					{/if}
+				</td>
 					<td>{outcome.isCounter ? 'Yes' : 'No'}</td>
 				</tr>
 			{/each}
@@ -77,9 +86,5 @@
 
 	.move-name {
 		text-align: start;
-	}
-
-	.null-symbol {
-		font-family: 'Noto Sans Symbols 2', sans-serif;
 	}
 </style>
