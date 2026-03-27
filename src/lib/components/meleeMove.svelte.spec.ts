@@ -108,12 +108,12 @@ describe('meleeMove.svelte', () => {
 		expect(highGuardCells[1].textContent).toBe('2');
 	});
 
-	it('displays null damage as empty set symbol', async () => {
+	it('displays null damage as an svg icon', async () => {
 		const { container } = render(MeleeMoveComponent, { meleeMove: lacerate });
 		const rows = container.querySelectorAll('tbody tr');
-		// Low guard row (index 4): damage = null → ∅
+		// Low guard row (index 4): damage = null → SVG icon
 		const lowGuardCells = rows[4].querySelectorAll('td');
-		expect(lowGuardCells[1].textContent).toBe('\u2205');
+		expect(lowGuardCells[1].querySelector('svg')).not.toBeNull();
 	});
 
 	it('displays "Yes" for counter and "No" for non-counter', async () => {
